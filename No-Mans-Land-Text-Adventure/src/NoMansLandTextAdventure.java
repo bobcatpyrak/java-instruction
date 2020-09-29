@@ -1,5 +1,6 @@
 // version 2.0 bugfix
 // correct spelling of "leer" and "conqueror"
+// add Gazette location
 
 import java.util.Scanner;
 import java.lang.Math;
@@ -532,8 +533,61 @@ public class NoMansLandTextAdventure
 								String areFields = kb.nextLine();
 								System.out.println();
 								if (areFields.equalsIgnoreCase("Y"))
+								{
 									System.out.println("\"Huh!? Fields!\"");
-								System.out.println("What do you do at Artemis's room?");
+									System.out.println();
+								}
+								boolean loopA = true;
+								String again = "";
+								while (loopA)
+								{
+									System.out.println("What do you do at Artemis's room?");
+									System.out.println();
+									System.out.println("C: Use the magic crown");
+									System.out.println("P: Speak to Patch");
+									System.out.println("M: Remind Artemis that he killed Man-Bat");
+									System.out.println();
+									String goA = kb.nextLine();
+									System.out.println();
+									
+									switch (goA)
+									{
+										case "p":
+										case "P":
+											System.out.println("\"Hey Footpad!\"");
+											System.out.println();
+											//System.out.println("Hello Patch.");
+											kb.nextLine();
+											System.out.println("\"Do you have any cheesy crackers I sure am hungry.\"");
+											System.out.println();
+											//System.out.println("No, I'm afraid I don't.");
+											kb.nextLine();
+											System.out.println("\"Oh no! I really like cheesy crackers did I ever tell you about Vinny Vinny used to find cheesy crackers and bring them back to share with me...\"");
+											System.out.println();
+											//System.out.println("Um...");
+											kb.nextLine();
+											System.out.println("\"And sos I tells him he'll be sleeping with the fishies I don't know why people have to sleep with the fishies maybe the fishies have bad dreams and they need someone to help them feel safe while they sleep...\"");
+											System.out.println();
+											//System.out.println("...");
+											kb.nextLine();
+											System.out.println("\"And Otis was always giving us treats and I don't think anybody else really is giving us as much treats I mean funny woman made me a fort out of that shoe but she calls me a funny name so I don't know if it's quite as good as before...\"");
+											System.out.println();
+											System.out.println("He never stops.");
+											System.out.println("BAD END");
+											loopA = false;
+											break;
+										case "m":
+										case "M":
+											System.out.println("You remind Artemis that he killed Man-Bat" + again + ".");
+											again = "... again";
+											break;
+										default:
+											System.out.println("You decide to do nothing.");
+											System.out.println("Artemis eats you.");
+											System.out.println("BAD END");
+											break;
+									}
+								}
 								break;
 							default:
 								System.out.println("You can't make a decision.");
