@@ -1,3 +1,6 @@
+// version 2.0 bugfix
+// correct spelling of "leer" and "conqueror"
+
 import java.util.Scanner;
 import java.lang.Math;
 import java.io.*;
@@ -8,7 +11,7 @@ public class NoMansLandTextAdventure
 {
 
 	public static void main(String[] args) 
-	{
+	{/*
 		Console console = System.console();
 	    if(console == null && !GraphicsEnvironment.isHeadless()) 
 	    {
@@ -32,7 +35,7 @@ public class NoMansLandTextAdventure
 	        }
 	    } 
 	    else 
-		    {
+		    {*/
 			Scanner kb = new Scanner(System.in);
 			String loop = "y";
 			
@@ -45,13 +48,15 @@ public class NoMansLandTextAdventure
 				
 				//First screen
 				System.out.println("C: Clocktower");
+				System.out.println("G: The Gazette");
 				System.out.println("___: anywhere else");
 				System.out.println();
 				String go1 = kb.nextLine();
 				System.out.println();
 				
 				switch (go1)
-				{
+				{	
+					// Clocktower hub
 					case "c":
 					case "C":
 						System.out.println("You enter into the Clocktower.");
@@ -133,7 +138,7 @@ public class NoMansLandTextAdventure
 								if (areTali.equalsIgnoreCase("y"))
 								{
 									System.out.println("Because you are Tali, you can understand your references.");
-									System.out.println("Star Conquerer does not like this.");
+									System.out.println("Star Conqueror does not like this.");
 									System.out.println("Your head asplodes.");
 									System.out.println("BAD END");
 								}
@@ -237,7 +242,7 @@ public class NoMansLandTextAdventure
 								System.out.println("His shirt is off.");
 								System.out.println("\"A bird in one hand is worth its weight in two stones.\"");
 								System.out.println("What?");
-								System.out.println("Fastbreak lears at you.");
+								System.out.println("Fastbreak leers at you.");
 								System.out.println("What do you do?");
 								System.out.println();
 								System.out.println("P: Punch Fastbreak");
@@ -282,7 +287,7 @@ public class NoMansLandTextAdventure
 										System.out.println("BEST END");
 										break;
 									default:
-										System.out.println("Fastbreak continues to lear at you.");
+										System.out.println("Fastbreak continues to leer at you.");
 										System.out.println("BAD END");
 										break;
 								}
@@ -301,6 +306,245 @@ public class NoMansLandTextAdventure
 								break;
 						}
 						break;
+					// Gazette hub
+					case "G":
+					case "g":
+						System.out.println("You arrive at the Gotham Gazette");
+						System.out.println("Grundy is not guarding the door anymore.");
+						System.out.println("You miss Grundy.");
+						System.out.println("Where do you go?");
+						System.out.println();
+						System.out.println("R: Riev's room");
+						System.out.println("V: Varra's room");
+						System.out.println("F: Fields's room");
+						System.out.println("A: Artemis's room");
+						System.out.println("T: Trish's room");
+						System.out.println();
+						
+						String goG = kb.nextLine();
+						System.out.println();
+						
+						switch (goG)
+						{
+							case "r":
+							case "R":
+								System.out.println("You go to Riev's room.");
+								System.out.println("What do you do?");
+								System.out.println();
+								System.out.println("F: Leave a flashlight at the door");
+								System.out.println("G: Get off on his bed");
+								System.out.println("C: Be a cat");
+								System.out.println();
+								
+								String goR = kb.nextLine();
+								System.out.println();
+								
+								switch (goR)
+								{
+									case "f":
+									case "F":
+										System.out.println("You leave a flashlight at the door.");
+										System.out.println("You hide around the corner to watch.");
+										System.out.println("Riev approaches. He seems upset.");
+										System.out.println("Heheheheh.");
+										System.out.println("GOOD END");
+										break;
+									case "g":
+									case "G":
+										System.out.println("You enter Riev's room and schlick on his bed.");
+										System.out.println("You write about it in your diary later.");
+										System.out.println("Riev does not like this.");
+										System.out.println("Next time he sees you, he shoots you in the head.");
+										System.out.println("BAD END");
+										break;
+									case "c":
+									case "C":
+										System.out.println("You are a cat.");
+										System.out.println("Cats like Riev.");
+										System.out.println("Riev likes cats.");
+										System.out.println("Where do you go now?");
+										System.out.println();
+										System.out.println("A: Artemis's room");
+										System.out.println("T: Trish's room");
+										System.out.println("C: The C Building");
+										System.out.println("O: Find other cats");
+										System.out.println();
+										
+										String goCat = kb.nextLine();
+										System.out.println();
+										
+										switch (goCat)
+										{
+											case "a":
+											case "A":
+												System.out.println("You go see Artemis.");
+												System.out.println("\"The consort! The consort!\"");
+												System.out.println("Artemis helps you get adopted, via Ra's al Ghul and the League of Assassins.");
+												System.out.println("GOOD END... for now");
+												break;
+											case "t":
+											case "T":
+												System.out.println("You go to Trish's room.");
+												System.out.println("You find socks.");
+												System.out.println("You take the socks.");
+												System.out.println("Trish does not like this.");
+												System.out.println("GOOD END for you, BAD END for Trish");
+												break;
+											case "c":
+											case "C":
+												System.out.println("You go to the C Building.");
+												System.out.println("There is an army of pigs.");
+												System.out.println("You fight valiantly.");
+												System.out.println("The pigs have been defeated!");
+												System.out.println("GOOD END");
+												break;
+											case "o":
+											case "O":
+												System.out.println("You go to find other cats.");
+												System.out.println("How many cats?");
+												System.out.println((int)(Math.random() * 52 + 1) + " cats.");
+												System.out.println("GOOD END");
+												break;
+											default:
+												System.out.println("You just stay there and lick yourself.");
+												System.out.println("Gross.");
+												System.out.println("END");
+												break;
+										}
+										break;
+									default:
+										System.out.println("You don't do anything.");
+										System.out.println("Riev doesn't say anything.");
+										System.out.println("END");
+										break;
+								}
+								break;
+							case "v":
+							case "V":
+								System.out.println("You go to Varra's room.");
+								System.out.println("What do you ask her?");
+								System.out.println();
+								System.out.println("H: For help");
+								System.out.println("S: If she works with the Spectre or the League");
+								System.out.println("G: If she's a good person");
+								System.out.println("F: Flirt with her");
+								System.out.println();
+								
+								String goV = kb.nextLine();
+								System.out.println();
+								
+								switch (goV)
+								{
+									case "h":
+									case "H":
+										System.out.println("\"Varra! Help!\"");
+										System.out.println("Varra helps you.");
+										System.out.println("GOOD END");
+										break;
+									case "s":
+									case "S":
+										System.out.println("You ask Varra if she has been working with/for the League, or if she knows the Spectre personally.");
+										System.out.println("She laughs nervously, twirling her hair with a finger.");
+										System.out.println();
+										System.out.println("Are you Count Vertigo? (y/n)");
+										System.out.println();
+										
+										String areVertigo = kb.nextLine();
+										System.out.println();
+										
+										if (areVertigo.equalsIgnoreCase("y"))
+										{
+											System.out.println("How could Varra betray you like this?!");
+											System.out.println("BAD END");
+										}
+										else
+										{
+											System.out.println("This girl sure is strange.");
+											System.out.println("END");
+										}
+										break;
+									case "g":
+									case "G":
+										System.out.println("You ask Varra if she's a good person.");
+										System.out.println("\"I like to think so\" she says.");
+										System.out.println("She says this while pulling an arrow from the body of a person she just killed.");
+										System.out.println("What a good person.");
+										System.out.println("GOOD END");
+										break;
+									case "f":
+									case "F":
+										System.out.println("You flirt with Varra.");
+										System.out.println();
+										System.out.println("Are you a villain? (y/n)");
+										System.out.println();
+										
+										String isVillain = kb.nextLine();
+										System.out.println();
+										
+										if (isVillain.equalsIgnoreCase("y"))
+										{
+											System.out.println("Varra flirts back with you.");
+											System.out.println();
+											System.out.println("Are you Count Vertigo? (y/n)");
+											System.out.println();
+											
+											String isVertigo = kb.nextLine();
+											System.out.println();
+											
+											if (isVertigo.equalsIgnoreCase("y"))
+											{
+												System.out.println("You are Vertigo.");
+												System.out.println("Bow chicka wow wow.");
+												System.out.println("GOOD END");
+											}
+											else
+											{
+												System.out.println("You are not Vertigo.");
+												System.out.println("How could Varra betray Vertigo like this?!");
+												System.out.println("BAD END");
+											}
+										}
+										else
+										{
+											System.out.println("Varra assures you she has a boyfriend.");
+											System.out.println("Too bad.");
+											System.out.println("BAD END");
+										}
+										break;
+									default:
+										System.out.println("Varra writes to the Soul Bowl.");
+										System.out.println("GOOD END");
+										break;
+								}
+								break;
+							case "f":
+							case "F":
+								System.out.println("You find Fields in the concert hall.");
+								System.out.println("He is playing piano.");
+								System.out.println("This is nice.");
+								System.out.println("GOOD END");
+								break;
+							case "a":
+							case "A":
+								System.out.println("You go to Artemis's room.");
+								System.out.println("Are you Fields? (y/n)");
+								System.out.println();
+								String areFields = kb.nextLine();
+								System.out.println();
+								if (areFields.equalsIgnoreCase("Y"))
+									System.out.println("\"Huh!? Fields!\"");
+								System.out.println("What do you do at Artemis's room?");
+								break;
+							default:
+								System.out.println("You can't make a decision.");
+								System.out.println("You miss Grundy too much.");
+								System.out.println("Rest in peace, big guy.");
+								System.out.println("SAD END");
+								break;
+						
+						}
+						break;
+					// Hidden Best End
 					case "defeat cander now":
 						System.out.println("You have defeated Cander.");
 						System.out.println("Barbers is saved.");
@@ -323,4 +567,4 @@ public class NoMansLandTextAdventure
 			kb.close();
 	    }
 	}
-}
+//}
