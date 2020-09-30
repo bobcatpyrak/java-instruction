@@ -46,8 +46,9 @@ public class BMDBApp
 					break;
 				case "2":
 					System.out.println("Add a Movie:");
+					kb.nextLine();
 					System.out.print("Title?\t");
-					String title = kb.next();
+					String title = kb.nextLine(); 
 					System.out.print("Year?\t");
 					String year = kb.next();
 					System.out.print("Rating?\t");
