@@ -1,6 +1,4 @@
-// version 2.0 bugfix
-// correct spelling of "leer" and "conqueror"
-// add Gazette location
+// version 3.0 
 
 import java.util.Scanner;
 import java.lang.Math;
