@@ -12,7 +12,7 @@ public class NoMansLandTextAdventure
 {
 
 	public static void main(String[] args) 
-	{/*
+	{
 		Console console = System.console();
 	    if(console == null && !GraphicsEnvironment.isHeadless()) 
 	    {
@@ -36,7 +36,7 @@ public class NoMansLandTextAdventure
 	        }
 	    } 
 	    else 
-		    {*/
+		    {
 			Scanner kb = new Scanner(System.in);
 			String loop = "y";
 			
@@ -581,13 +581,81 @@ public class NoMansLandTextAdventure
 											System.out.println("You remind Artemis that he killed Man-Bat" + again + ".");
 											again = "... again";
 											break;
+										case "c":
+										case "C":
+											System.out.println("You put on the crown and think very hard...");
+											System.out.println();
+											System.out.println("T: About Teekl");
+											System.out.println("R: About Rex");
+											System.out.println("S: About Streaky");
+											System.out.println();
+											String goC = kb.nextLine();
+											System.out.println();
+											
+											switch(goC)
+											{
+												case "t":
+												case "T":
+													System.out.println("You think about Teekl.");
+													System.out.println("Fat Harvey Teekl.");
+													System.out.println("He whirrs into existence.");
+													System.out.println("\"Mrrrow.\"");
+													System.out.println("He's not very happy.");
+													System.out.println("Scar's not very happy.");
+													System.out.println("Ermine is quite happy.");
+													System.out.println("BAD END");
+													break;
+												case "r":
+												case "R":
+													System.out.println("You think hard about Rex.");
+													System.out.println("\"Pappa!\"");
+													System.out.println("Rex reminds you to chew your dental bone.");
+													System.out.println("Have you been chewing it lately? (y/n)");
+													System.out.println();
+													String chewBone = kb.nextLine();
+													System.out.println();
+													if (chewBone.equalsIgnoreCase("y"))
+													{
+														System.out.println("Pappa is proud.");
+														System.out.println("GOOD END");
+													}
+													else
+													{
+														System.out.println("Pappa is disappointed.");
+														System.out.println("BAD END");
+													}
+													break;
+												case "s":
+												case "S":
+													System.out.println("You think about Streaky.");
+													System.out.println("He appears.");
+													System.out.println("He vomits.");
+													System.out.println("BAD END");
+													break;
+												default:
+													System.out.println("You think about somebody else.");
+													System.out.println("It doesn't work.");
+													System.out.println("Looks like Patch used the crown earlier today.");
+													System.out.println("BAD END");
+													break;
+											
+											}
+											loopA = false;
+											break;
 										default:
 											System.out.println("You decide to do nothing.");
 											System.out.println("Artemis eats you.");
 											System.out.println("BAD END");
+											loopA = false;
 											break;
 									}
 								}
+								break;
+							case "t":
+							case "T":
+								System.out.println("You go to #trish-room");
+								System.out.println("It's under construction.");
+								System.out.println("Come back in version 3.0.");
 								break;
 							default:
 								System.out.println("You can't make a decision.");
@@ -621,4 +689,4 @@ public class NoMansLandTextAdventure
 			kb.close();
 	    }
 	}
-//}
+}
