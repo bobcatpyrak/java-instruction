@@ -19,8 +19,7 @@ public class BMDBApp
 			System.out.println("3 - Exit");
 			System.out.println();
 			
-			System.out.print("Command:\t");
-			choice = kb.next();
+			choice = Console.getString("Command:\t");
 			System.out.println();
 			
 			if(choice.equals("3"))
@@ -29,47 +28,52 @@ public class BMDBApp
 			switch (choice)
 			{
 				case "1":
+					
 					System.out.println("Add an Actor:");
-					System.out.print("First Name?\t");
-					String firstName = kb.next();
-					System.out.print("Last Name?\t");
-					String lastName = kb.next();
-					System.out.print("Gender?\t");
-					String gender = kb.next();
-					System.out.println("TEST");
-					System.out.print("Birthdate? (YYYY-MM-DD)\t");
-					String birthdate = kb.next();
+					Actor a = new Actor();
+					a = setActor(a);
 					System.out.println();
 					System.out.println("Actor Summary");
-					System.out.println(firstName + " " + lastName + ", " + gender + ", born " + birthdate);
+					System.out.println(a.displaySummary());
 					System.out.println();
 					break;
 				case "2":
 					System.out.println("Add a Movie:");
-					kb.nextLine();
-					System.out.print("Title?\t");
-					String title = kb.nextLine(); 
-					System.out.print("Year?\t");
-					String year = kb.next();
-					System.out.print("Rating?\t");
-					String rating = kb.next();
-					System.out.print("Genre?\t");
-					String genre = kb.next();
+					Movie m = new Movie();
+					m = setMovie(m);
 					System.out.println();
 					System.out.println("Movie Summary");
-					System.out.println(title + " (" + rating + ") was released in " + year + ". Genre(s): " + genre);
+					System.out.println(m.displaySummary());
 					System.out.println();
 					break;
 				default:
 					System.out.println("That is not a valid menu action.");
 					break;
 			}
-			
-
 		}
 		
 		System.out.println("Good bye");
 		kb.close();
+	}
+	
+	private static Actor setActor(Actor a)
+	{
+		a.setFirstName(Console.getString("First Name?\t"));
+		a.setLastName(Console.getString("Last Name?\t"));
+		a.setGender(Console.getString("Gender?\t"));
+		a.setBirthdate(Console.getString("Birthdate? (YYYY-MM-DD)\t"));
+		
+		return a;
+	}
+	
+	private static Movie setMovie(Movie m) 
+	{
+		m.setTitle(Console.getString("Title?\t"));
+		m.setYear(Console.getString("Year?\t"));
+		m.setRating(Console.getString("Rating?\t"));
+		m.setGenre(Console.getString("Genre?\t"));
+		
+		return m;
 	}
 
 }
