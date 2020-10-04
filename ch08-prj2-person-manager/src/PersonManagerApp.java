@@ -20,9 +20,9 @@ public class PersonManagerApp {
 				Customer c = new Customer();
 				p = c;
 				p = addName(p);			
-				c = (Customer)p;
+				// c = (Customer)p;
 				c = addCustomer(c);
-				p = c;
+				// p = c;
 				System.out.println("\nYou entered a new Customer:");
 				break;
 			case "e":
@@ -30,9 +30,9 @@ public class PersonManagerApp {
 				Employee e = new Employee();
 				p = e;
 				p = addName(p);
-				e = (Employee)p;
+				//e = (Employee)p;
 				e = addEmployee(e);
-				p = e;
+				//p = e;
 				System.out.println("\nYou entered a new Employee:");
 				break;
 			}

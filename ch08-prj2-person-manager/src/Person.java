@@ -28,6 +28,11 @@ public class Person
 		this.lastName = lastName;
 	}
 	
+	public String getName()
+	{
+		return firstName;
+	}
+	
 	@Override
 	public String toString()
 	{

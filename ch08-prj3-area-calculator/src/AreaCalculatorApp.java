@@ -19,24 +19,27 @@ public class AreaCalculatorApp
 			case "C":
 				double radius = Console.getDouble("\nEnter radius: ");
 				s = new Circle(radius);
-				System.out.println("\nThe area of the Circle you entered is: " + s.getArea());
+				//System.out.println("\nThe area of the Circle you entered is: " + s.getArea());
 				break;
 			case "s":
 			case "S":
 				double width = Console.getDouble("\nEnter length of a side: ");
 				s = new Square(width);
-				System.out.println("\nThe area of the Square you entered is: " + s.getArea());
+				//System.out.println("\nThe area of the Square you entered is: " + s.getArea());
 				break;
 			case "r":
 			case "R":
 				double w = Console.getDouble("\nEnter width: ");
 				double h = Console.getDouble("Enter height: ");
 				s = new Rectangle(w, h);
-				System.out.println("\nThe area of the Rectangle you entered is: " + s.getArea());
+				//System.out.println("\nThe area of the Rectangle you entered is: " + s.getArea());
 				break;
 			default:
+				s = new Circle(0);
 				break;
 			}
+			
+			System.out.println("The area is " + s.getArea());
 			
 			if(Console.getChoiceString("\nContinue? (y/n): ", "y", "n").equalsIgnoreCase("n"))
 				loop = false;

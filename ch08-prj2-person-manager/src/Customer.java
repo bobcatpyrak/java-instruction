@@ -21,6 +21,12 @@ public class Customer extends Person
 	}
 	
 	@Override
+	public String getName()
+	{
+		return lastName;
+	}
+	
+	@Override
 	public String toString()
 	{
 		return super.toString() + "\nCustomer Number: " + number;
