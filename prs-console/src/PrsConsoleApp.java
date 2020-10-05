@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 public class PrsConsoleApp 
 {
@@ -47,7 +47,39 @@ public class PrsConsoleApp
 			v.setEmail(Console.getRequiredString("Email Address: "));
 			System.out.println(v);
 			break;
+		case "3":
+			Product p = new Product();
+			System.out.println("Add a product:");
+			p.setId(Console.getInt("ID: "));
+			p.setPartNumber(Console.getRequiredString("Part Number: "));
+			p.setName(Console.getRequiredString("Name of Product: "));
+			p.setPrice(Console.getRequiredString("Price: "));
+			p.setUnit(Console.getString("Unit: "));
+			p.setPhotoPath(Console.getString("Photo File Path: "));
+			System.out.println(p);
+			break;
+		case "4":
+			Request r = new Request();
+			System.out.println("Add a request:");
+			r.setId(Console.getInt("ID: "));
+			r.setDescription(Console.getRequiredString("Describe your request?: "));
+			r.setJustification(Console.getRequiredString("Justify your request: "));
+			r.setDateNeeded(Console.getRequiredString("Needed by what date?: "));
+			r.setDeliveryMode(Console.getRequiredString("Delivery mode?: "));
+			r.setStatus(Console.getString("Status? (leave blank if new): "));
+			r.setTotal(Console.getDouble("Total price of request: "));
+			r.setSubmittedDate(Console.getString("Date request put in (leave blank for current date): "));
+			System.out.println(r);
+			break;
+		case "5":
+			LineItem li = new LineItem();
+			System.out.println("Add a line item:");
+			li.setId(Console.getInt("ID: "));
+			li.setQuantity(Console.getInt("Quantity: "));
+			System.out.println(li);
+			break;
 		default:
+			break;
 		}
 		
 		System.out.println("Bye!");
