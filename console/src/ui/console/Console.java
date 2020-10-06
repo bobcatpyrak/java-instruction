@@ -90,12 +90,12 @@ public static String getRequiredString(String prompt) {
         boolean isValid = false;
         while (!isValid) {
             i = getInt(prompt);
-            if (i <= min) {
+            if (i < min) {
                 System.out.println(
-                        "Error! Number must be greater than " + min + ".");
-            } else if (i >= max) {
+                        "Error! Number must be greater than or equal to " + min + ".");
+            } else if (i > max) {
                 System.out.println(
-                        "Error! Number must be less than " + max + ".");
+                        "Error! Number must be less than or equal to " + max + ".");
             } else {
                 isValid = true;
             }
@@ -124,12 +124,12 @@ public static String getRequiredString(String prompt) {
         boolean isValid = false;
         while (!isValid) {
             d = getDouble(prompt);
-            if (d <= min) {
+            if (d < min) {
                 System.out.println(
-                        "Error! Number must be greater than " + min + ".");
-            } else if (d >= max) {
+                        "Error! Number must be greater than or equal to " + min + ".");
+            } else if (d > max) {
                 System.out.println(
-                        "Error! Number must be less than " + max + ".");
+                        "Error! Number must be less than or equal to " + max + ".");
             } else {
                 isValid = true;
             }
