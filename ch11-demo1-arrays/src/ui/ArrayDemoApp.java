@@ -3,9 +3,11 @@ package ui;
 import java.util.Arrays;
 
 import business.Product;
+import ui.console.Console;
 
 public class ArrayDemoApp 
 {
+	static Product[] products;
 
 	public static void main(String[] args) 
 	{
@@ -57,10 +59,12 @@ public class ArrayDemoApp
 
 		Product p = new Product("java", "Murach's Java book", 54.57);
 		Product p2 = new Product("mysql", "MySQL book", 53.68);
+		Product p3 = new Product("hp01", "Harry Potter and the Sorceror's Stone", 12.99);
 		
-		Product[] products = new Product[2];
+		products = new Product[3];
 		products[0] = p2;
 		products[1] = p;
+		products[2] = p3;
 		
 		for (Product prod : products)
 			System.out.println(prod);
@@ -70,7 +74,27 @@ public class ArrayDemoApp
 		for (Product prod : products)
 			System.out.println(prod);
 		
+		String code = "";
+		while (!code.equalsIgnoreCase("x"))
+		{
+			System.out.println("Search for a product!");
+			code = Console.getString("Enter code: ");
+			System.out.println(getProduct(code));
+		}
+		
 		System.out.println("bye");
 	}
-
+	
+	private static Product getProduct(String code)
+	{
+		Product p = null;
+		
+		for(Product prod : products)
+		{
+			if(code.equals(prod.getCode()))
+				p = prod;
+		}
+		
+		return p;
+	}
 }

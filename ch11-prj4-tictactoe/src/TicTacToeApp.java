@@ -10,26 +10,42 @@ public class TicTacToeApp
 		boolean loop = true;
 		boolean gameOver = false;
 		boolean xTurn = true;
+		boolean tie = false;
+		int turns = 0;
 		String[][] board = new String[3][3];
 		
 		while (loop)
 		{
+			tie = false;
+			gameOver = false;
+			turns = 0;
 			board = newGame();
 			while (!gameOver)
 			{
+				if(turns == 9)
+				{
+					tie = true;
+					gameOver = true;
+					break;
+				}
 				displayBoard(board);
 				board = takeTurn(board, xTurn);
 				gameOver = checkWin(board);
 				xTurn = !xTurn;
+				turns++;
 			}
 			displayBoard(board);
 			System.out.println("Game Over!");
-			if(!xTurn)
-				System.out.println("X wins!");
+			if(!tie)
+			{
+				if(!xTurn)
+					System.out.println("X wins!");
+				else
+					System.out.println("O wins!");
+			}
 			else
-				System.out.println("O wins!");
-			
-			gameOver = false;
+				System.out.println("It's a cat game!");
+
 			loop = Console.getBoolean("Play again? (true/false): ");
 		}
 		
