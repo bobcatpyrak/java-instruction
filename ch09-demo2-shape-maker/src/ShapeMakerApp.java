@@ -187,23 +187,23 @@ public class ShapeMakerApp
 		{
 			int w = width*2 - 1;
 			int l = length*2 - 1;
-			int s = (l-w)/2;
-			int inc = s/(height-2);
-			
-			for (int spaces = 1; spaces < count+inc; spaces++)
+			double s = (l-w)/2;
+			double inc = s/(height);
+			int spaces = (int)(count*inc);
+			if(inc%1.0 > 0.5)
+				spaces++;
+			// ok
+			for (int i2 = 0; i2 < spaces; i2++)
 				{
 					System.out.print(" ");
 				}
-			System.out.print("* ");
+			System.out.print("*");
 			
-			// figure thIS OUT
-			/*for (int count2 = 0; count2 < height - 2; count2++)
+			// good enough		
+			for (int count2 = 0; count2 < l - (spaces*2) - 2; count2++)
 			{
-				for(int corner = 0; corner < w + (count*2); corner++)
-				{
 					System.out.print(" ");
-				}
-			}*/
+			}
 			System.out.println("*");
 		}
 		
