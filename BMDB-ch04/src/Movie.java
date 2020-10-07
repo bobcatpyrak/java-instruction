@@ -1,6 +1,7 @@
 
 public class Movie 
 {
+	int id;
 	String title;
 	String year;
 	String rating;
@@ -11,8 +12,9 @@ public class Movie
 		
 	}
 	
-	public Movie(String title, String year,	String rating, String genre)
+	public Movie(int id, String title, String year,	String rating, String genre)
 	{
+		this.id = id;
 		this.title = title;
 		this.year = year;
 		this.rating = rating;
@@ -57,5 +59,11 @@ public class Movie
 		this.genre = genre;
 	}
 	
-	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

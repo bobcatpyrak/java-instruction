@@ -1,6 +1,7 @@
 
 public class Actor 
 {
+	int id;
 	String firstName;
 	String lastName;
 	String gender;
@@ -11,8 +12,9 @@ public class Actor
 		
 	}
 	
-	public Actor(String firstName, String lastName,	String gender, String birthdate)
+	public Actor(int id, String firstName, String lastName,	String gender, String birthdate)
 	{
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.gender = gender;
@@ -21,7 +23,7 @@ public class Actor
 	
 	public String displaySummary()
 	{
-		return firstName + " " + lastName + ", " + gender + ", " + birthdate;
+		return id + ". " + firstName + " " + lastName + ", " + gender + ", " + birthdate;
 	}
 	
 	// Getters and Setters
@@ -48,6 +50,14 @@ public class Actor
 	}
 	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

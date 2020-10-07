@@ -27,18 +27,21 @@ public class Console {
         return s;
     }
 
-    public static String getChoiceString(String prompt, String s1, String s2, String s3) {
+    public static String getChoiceString(String prompt, String[] sa) {
         String s = "";
         boolean isValid = false;
         while (!isValid) {
             s = getRequiredString(prompt);
-            if (!s.equalsIgnoreCase(s1) && !s.equalsIgnoreCase(s2) && !s.equalsIgnoreCase(s3)) {
-                System.out.println("Error! Entry must be '" + s1 + "' or '" +
-                        s2 + "' or '" +
-                        s3 + "'. Try again.");
-            } else {
-                isValid = true;
+            
+            
+            for(String s1 : sa)
+            {
+            	if(s.equalsIgnoreCase(s1))
+            		isValid = true;
             }
+            
+            if(!isValid)
+            	System.out.println("Error! Unrecognized entry!");
         }
         return s;
     }
@@ -68,6 +71,16 @@ public static String getRequiredString(String prompt) {
 		}
 	}
 	
+	public static boolean getYesOrNo(String prompt) {
+
+		String check = getChoiceString(prompt, "y", "n");
+		if(check.equalsIgnoreCase("y")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
     public static int getInt(String prompt) {
         int i = 0;
