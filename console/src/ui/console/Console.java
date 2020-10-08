@@ -97,7 +97,7 @@ public static String getRequiredString(String prompt) {
         }
         return i;
     }
-
+    
     public static int getInt(String prompt, int min, int max) {
         int i = 0;
         boolean isValid = false;

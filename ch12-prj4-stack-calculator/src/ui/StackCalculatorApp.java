@@ -13,7 +13,7 @@ public class StackCalculatorApp
 		System.out.println("\nCommands: push n, add, sub, mult, div, clear, or quit");
 		
 		String input = Console.getChoiceString("stack> ", new String[] {"add", "sub", "mult", "div", "clear", "quit"});
-		String choice = input.
+		
 	}
 
 }
