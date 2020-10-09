@@ -2,6 +2,8 @@ package business;
 
 public class CharacterSheet 
 {
+	private final String FIELD_SEP = "%";
+	
 	int id;
 	String name;
 	String picture;
@@ -541,5 +543,60 @@ public class CharacterSheet
 		this.willpower = willpower;
 	}
 	
+	public String getAllStats()
+	{
+		return getReflexes() + FIELD_SEP + getAcrobatics() + FIELD_SEP + getDodge() + FIELD_SEP + getHandToHand() + FIELD_SEP + getMeleeWeapons() + FIELD_SEP + getStealth() + FIELD_SEP
+				 + getCoordination() + FIELD_SEP + getCatching() + FIELD_SEP + getClimb() + FIELD_SEP + getDrive() + FIELD_SEP + getMarksmanship() + FIELD_SEP + getThievery() + FIELD_SEP + getThrownWeapons() + FIELD_SEP
+				 + getPhysique() + FIELD_SEP + getAthletics() + FIELD_SEP + getLeap() + FIELD_SEP + getLifting() + FIELD_SEP + getResistance() + FIELD_SEP + getRunning() + FIELD_SEP + getSwimming() + FIELD_SEP
+				 + getKnowledge() + FIELD_SEP + getArcaneLore() + FIELD_SEP + getDemolitions() + FIELD_SEP + getLanguages() + FIELD_SEP + getMedicine() + FIELD_SEP + getScholar() + FIELD_SEP + getScience() + FIELD_SEP + getSecurity() + FIELD_SEP
+				 + getPerception() + FIELD_SEP + getArtist() + FIELD_SEP + getEngineering() + FIELD_SEP + getSearch() + FIELD_SEP + getStreetwise() + FIELD_SEP + getSurveillance() + FIELD_SEP + getSurvival() + FIELD_SEP
+				 + getPresence() + FIELD_SEP + getBluff() + FIELD_SEP + getCharm() + FIELD_SEP + getIntimidation() + FIELD_SEP + getPersuasion() + FIELD_SEP + getWillpower() + FIELD_SEP;
+	}
 	
+	public void setAllStats(String cs)
+	{
+		String[] fields = cs.split(FIELD_SEP);
+		
+		setReflexes(Integer.parseInt(fields[0]));
+		setAcrobatics(Integer.parseInt(fields[1]));
+		setDodge(Integer.parseInt(fields[2]));
+		setHandToHand(Integer.parseInt(fields[3]));
+		setMeleeWeapons(Integer.parseInt(fields[4]));
+		setStealth(Integer.parseInt(fields[5]));
+		setCoordination(Integer.parseInt(fields[6]));
+		setCatching(Integer.parseInt(fields[7]));
+		setClimb(Integer.parseInt(fields[8]));
+		setDrive(Integer.parseInt(fields[9]));
+		setMarksmanship(Integer.parseInt(fields[10]));
+		setThievery(Integer.parseInt(fields[11]));
+		setThrownWeapons(Integer.parseInt(fields[12]));
+		setPhysique(Integer.parseInt(fields[13]));
+		setAthletics(Integer.parseInt(fields[14]));
+		setLeap(Integer.parseInt(fields[15]));
+		setLifting(Integer.parseInt(fields[16]));
+		setResistance(Integer.parseInt(fields[17]));
+		setRunning(Integer.parseInt(fields[18]));
+		setSwimming(Integer.parseInt(fields[19]));
+		setKnowledge(Integer.parseInt(fields[20]));
+		setArcaneLore(Integer.parseInt(fields[21]));
+		setDemolitions(Integer.parseInt(fields[22]));
+		setLanguages(Integer.parseInt(fields[23]));
+		setMedicine(Integer.parseInt(fields[24]));
+		setScholar(Integer.parseInt(fields[25]));
+		setScience(Integer.parseInt(fields[26]));
+		setSecurity(Integer.parseInt(fields[27]));
+		setPerception(Integer.parseInt(fields[28]));
+		setArtist(Integer.parseInt(fields[29]));
+		setEngineering(Integer.parseInt(fields[30]));
+		setSearch(Integer.parseInt(fields[31]));
+		setStreetwise(Integer.parseInt(fields[32]));
+		setSurveillance(Integer.parseInt(fields[33]));
+		setSurvival(Integer.parseInt(fields[34]));
+		setPresence(Integer.parseInt(fields[35]));
+		setBluff(Integer.parseInt(fields[36]));
+		setCharm(Integer.parseInt(fields[37]));
+		setIntimidation(Integer.parseInt(fields[38]));
+		setPersuasion(Integer.parseInt(fields[39]));
+		setWillpower(Integer.parseInt(fields[40]));
+	}
 }
