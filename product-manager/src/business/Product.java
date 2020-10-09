@@ -53,4 +53,9 @@ public class Product {
     	NumberFormat numero = NumberFormat.getNumberInstance();
     	return numero.format(price);
     }
+    
+    public String toString()
+    {
+    	return "code: " + code + "\tdescription: " + description + "\tprice: " + price;
+    }
 }
