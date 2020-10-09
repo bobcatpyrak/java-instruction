@@ -1,13 +1,20 @@
 package ui;
 
+import java.io.*;
+import java.nio.file.*;
+
 import business.CharacterSheet;
 import ui.console.Console;
 
 public class CharacterSheetCreatorApp 
 {
 
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
+
+		
+		
+		
 		int id = 0;
 		System.out.println("Let's put in stats for a character\n");
 
@@ -82,5 +89,28 @@ public class CharacterSheetCreatorApp
 				);
 
 	}
+	
+	private static void createDir() throws IOException
+	{
+		// Creates a folder for sheets if doesn't exist
+		String dirString = "c:/Users/Max-Student/Documents/NMLCharacterSheets";
+		Path dirPath = Paths.get(dirString);
+		if (Files.notExists(dirPath))
+			Files.createDirectories(dirPath);
+		
+		// Creates a save file if doesn't exist
+		String fileString = "NMLCharacterSheets.txt";
+		Path filePath = Paths.get(dirString, fileString);
+		if (Files.notExists(filePath))
+			Files.createFile(filePath);
+		
+	}
 
+	private static void save() throws IOException
+	{
+		Path savePath = Paths.get("NMLCharacterSheets.txt");
+		File filePath = savePath.toFile();
+		
+		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filePath)));
+	}
 }
