@@ -1,7 +1,4 @@
 package ui;
-
-import java.util.ArrayList;
-
 import ui.console.Console;
 
 public class PigLatinConverterApp 
@@ -62,7 +59,6 @@ public class PigLatinConverterApp
 		}
 		word = word.substring(i-1) + word.substring(0, i-1) + "ay";
 		
-		
 		return word;
 	}
 	
@@ -86,14 +82,12 @@ public class PigLatinConverterApp
 	{
 		boolean special = false;
 		
-
 		word = word.substring(0,  word.length()-1);
 		char[] letters = word.toCharArray();
 		for(char letter : letters)
 		{
 			if (!(Character.isAlphabetic(letter) || letter == '\''))
-				special = true;
-					
+				special = true;			
 		}
 		return special;
 	}
