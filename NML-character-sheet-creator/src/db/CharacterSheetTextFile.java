@@ -15,21 +15,24 @@ public class CharacterSheetTextFile implements DAO<CharacterSheet>
 	
 	public CharacterSheetTextFile()
 	{
-		sheetsPath = Paths.get("NMLCharacterSheets.txt");
+		String dirString = "c:/Users/Max-Student/Documents/NMLCharacterSheets";
+
+		
+		sheetsPath = Paths.get("c:/Users/Max-Student/Documents/NMLCharacterSheets/NMLCharacterSheets.txt");
 		sheetsFile = sheetsPath.toFile();
 		sheets = getAll();
 	}
 	@Override
 	public CharacterSheet get(int id) 
 	{
-		return sheets.get(sheets.indexOf(id));
+		return sheets.get(id);
 	}
 
 	@Override
 	public List<CharacterSheet> getAll() 
-	{
-		if (sheets != null)
-			return null;
+	{	
+		if(sheets != null)
+			return sheets;
 		
 		sheets = new ArrayList<>();
 		if(Files.exists(sheetsPath))
@@ -56,7 +59,7 @@ public class CharacterSheetTextFile implements DAO<CharacterSheet>
 		}	
 		else
 		{
-			System.out.println(sheetsPath + " does not exist.");
+			System.out.println(sheetsPath + " is empty.");
 			return null;
 		}
 	}
