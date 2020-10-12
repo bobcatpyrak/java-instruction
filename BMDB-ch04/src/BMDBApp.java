@@ -1,17 +1,25 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+
 
 import ui.console.Console;
 
 public class BMDBApp 
 {
 
+	private static DAO<Actor> actorDAO = new ActorTextFile();
+
 	public static void main(String[] args) 
 	{
-		int actorId = 1;
+		createDir();
+		
+		int actorId = actorDAO.getAll().size() + 1;
 		int movieId = 1;
 		Scanner kb = new Scanner(System.in);
 		String choice = "";
-		ArrayList<Actor> actors = new ArrayList<>();
 		ArrayList<Movie> movies = new ArrayList<>();
 		
 		// Welcome message
@@ -19,6 +27,8 @@ public class BMDBApp
 
 		while (true)
 		{
+			List<Actor> actors = actorDAO.getAll();
+
 			System.out.println("\nMenu");
 			System.out.println("1 - Add Actor");
 			System.out.println("2 - Add Movie");
@@ -44,7 +54,7 @@ public class BMDBApp
 					a = setActor(a);
 					a.setId(actorId);
 					actorId++;
-					actors.add(a);
+					actorDAO.add(a);
 					System.out.println();
 					System.out.println("Actor Summary");
 					System.out.println(a.displaySummary());
@@ -120,4 +130,30 @@ public class BMDBApp
 		return m;
 	}
 
+	private static void createDir()
+	{
+		// Creates a folder for sheets if doesn't exist
+		String dirString = "c:/repos/java-instruction/BMDB-ch04/.dat";
+		Path dirPath = Paths.get(dirString);
+		if (Files.notExists(dirPath))
+			try 
+			{
+				Files.createDirectories(dirPath);
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		
+		// Creates a save file if doesn't exist
+		String fileString = "actors-list.txt";
+		Path filePath = Paths.get(dirString, fileString);
+		if (Files.notExists(filePath))
+			try {
+				Files.createFile(filePath);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+	}
 }

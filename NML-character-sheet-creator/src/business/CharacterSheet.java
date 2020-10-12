@@ -26,12 +26,12 @@ public class CharacterSheet
 	int skillPoints;
 	int bodyPointsCurrent;
 	int bodyPointsMax;
-	int reflexes; int acrobatics; int dodge; int handToHand; int meleeWeapons; int stealth;
-	int coordination; int catching; int climb; int drive; int marksmanship; int thievery; int thrownWeapons;
-	int physique; int athletics; int leap; int lifting; int resistance; int running; int swimming;
-	int knowledge; int arcaneLore; int demolitions; int languages; int medicine; int scholar; int science; int security;
-	int perception; int artist; int engineering; int search; int streetwise; int surveillance; int survival;
-	int presence; int bluff; int charm; int intimidation; int persuasion; int willpower;
+	int reflexes; 		int acrobatics; int dodge; 			int handToHand; 	int meleeWeapons; 	int stealth;
+	int coordination; 	int catching; 	int climb; 			int drive; 			int marksmanship; 	int thievery; 		int thrownWeapons;
+	int physique; 		int athletics; 	int leap; 			int lifting; 		int resistance; 	int running; 		int swimming;
+	int knowledge; 		int arcaneLore; int demolitions; 	int languages; 		int medicine; 		int scholar; 		int science; 		int security;
+	int perception; 	int artist; 	int engineering; 	int search; 		int streetwise; 	int surveillance; 	int survival;
+	int presence; 		int bluff; 		int charm; 			int intimidation; 	int persuasion; 	int willpower;
 	
 	public CharacterSheet(int id)
 	{
