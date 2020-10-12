@@ -20,7 +20,6 @@ public class CharacterSheetCreatorApp
 		
 		System.out.println("DCRPG Character Stats Builder");
 
-		// START LOOP HERE
 		boolean loop = true;
 		while(loop)
 		{
@@ -61,30 +60,49 @@ public class CharacterSheetCreatorApp
 				break;
 			case 2:
 				if(sheets.size() > 0)
-					displayStats(sheets.get(Console.getInt("\n> Display stats of which character? ", 0, nextId - 1)));
+				{
+					int displayChoice = Console.getInt("\n> Display stats of which character? ", 0, nextId - 1);
+					int indexChoice = -1;
+
+					for (CharacterSheet cs: sheets)
+					{
+						if(cs.getId() == displayChoice)
+							indexChoice = sheets.indexOf(cs);
+					}
+					if(indexChoice == -1)
+						System.out.println("Character not found");
+					else
+						displayStats(sheets.get(indexChoice));
+				}
 				else
 					System.out.println("NMLCharaccterSheets.txt is empty.");
 				break;
 			case 3:
 				if(sheetDAO.add(addCharacter(nextId)))
-					System.out.println(sheetDAO.get(nextId).getName() + " has been successfully added.");
+					System.out.println(sheetDAO.get(sheetDAO.getAll().size() - 1).getName() + " has been successfully added.");
 				else
 					System.out.println("Error.");
 				break;
 			case 4:
 				if (sheets.size() > 0)
 				{
-					int editId = Console.getInt("\n> Edit which character? ", 0, sheets.size());
-					
-					if(sheetDAO.delete(sheetDAO.get(editId)))
+					int editId = Console.getInt("\n> Edit which character? ", 0, nextId - 1);
+					int indexChoice = -1;
+
+					for (CharacterSheet cs: sheets)
 					{
-						if(sheetDAO.add(addCharacter(editId)))
-							System.out.println(sheetDAO.get(editId).getName() + " has been successfully edited.");
+						if(cs.getId() == editId)
+							indexChoice = sheets.indexOf(cs);
+					}
+					if(indexChoice == -1)
+						System.out.println("Character not found");
+					else
+					{
+						if(sheetDAO.update(addCharacter(indexChoice)))
+							System.out.println(sheetDAO.get(indexChoice).getName() + " has been successfully edited.");
 						else
 							System.out.println("Error.");
 					}
-					else
-						System.out.println("Error.");
 				}
 				else
 					System.out.println("NMLCharaccterSheets.txt is empty.");
@@ -92,10 +110,23 @@ public class CharacterSheetCreatorApp
 			case 5:
 				if(sheets.size() > 0)
 				{
-					if(sheetDAO.delete(sheetDAO.get(Console.getInt("\n> Delete which character? ", 0, sheets.size()))))
-						System.out.println("Success.");
+					int deleteId = Console.getInt("\n> Delete which character? ", 0, nextId - 1);
+					int indexChoice = -1;
+
+					for (CharacterSheet cs: sheets)
+					{
+						if(cs.getId() == deleteId)
+							indexChoice = sheets.indexOf(cs);
+					}
+					if(indexChoice == -1)
+						System.out.println("Character not found");
 					else
-						System.out.println("Error.");
+					{
+						if(sheetDAO.delete(sheetDAO.get(indexChoice)))
+							System.out.println("Success.");
+						else
+							System.out.println("Error.");
+					}
 				}
 				else
 					System.out.println("NMLCharaccterSheets.txt is empty.");
@@ -164,22 +195,22 @@ public class CharacterSheetCreatorApp
 		System.out.println("===========================================================================\n"
 						 + "|Name: " + c.getName() + "\n"
 						 + "===========================================================================\n"
-						 + "|Reflexes:\t\t" + c.getReflexes() + " | Coordination:\t" + c.getCoordination() + " | Physique:\t\t" + c.getPhysique() + " |\n"
-						 + "|Acrobatics: " + c.getAcrobatics() + "\t\t" + (c.getReflexes()+c.getAcrobatics()) + " | Catch: " + c.getCatching() + "\t\t" + (c.getCoordination()+c.getCatching()) + " | Athletics: " + c.getAcrobatics() + "\t" + (c.getPhysique()+c.getAthletics()) + " |\n"
-						 + "|Dodge: " + c.getDodge() + "\t\t" + (c.getReflexes()+c.getDodge()) + " | Climb: " + c.getClimb() + "\t\t" + (c.getCoordination()+c.getClimb()) + " | Leap: " + c.getLeap() + "\t\t" + (c.getPhysique()+c.getLeap()) + " |\n"
-						 + "|Hand-to-Hand: " + c.getHandToHand() + "\t" + (c.getReflexes()+c.getHandToHand()) + " | Drive: " + c.getDrive() + "\t\t" + (c.getCoordination()+c.getDrive()) + " | Lifting: " + c.getLifting() + "\t\t" + (c.getPhysique()+c.getLifting()) + " |\n"
-						 + "|Melee Weapons: " + c.getMeleeWeapons() + "\t" + (c.getReflexes()+c.getMeleeWeapons()) + " | Marksmanship: " + c.getMarksmanship() + "\t" + (c.getCoordination()+c.getMarksmanship()) + " | Resistance: " + c.getResistance() + "\t" + (c.getPhysique()+c.getResistance()) + " |\n"
-						 + "|Stealth: " + c.getStealth() + "\t\t" + (c.getReflexes()+c.getStealth()) + " | Thievery: " + c.getThievery() + "\t\t" + (c.getCoordination()+c.getThievery()) + " | Running: " + c.getRunning() + "\t\t" + (c.getPhysique()+c.getRunning()) + " |\n"
-						 + "|\t\t\t  | Thrown Weapons: " + c.getThrownWeapons() + "\t" + (c.getCoordination()+c.getThrownWeapons()) + " | Swimming: " + c.getSwimming() + "\t\t" + (c.getPhysique()+c.getSwimming()) + " |\n"
+						 + "|Reflexes:\t\t" 											+ StringUtil.pad(String.valueOf(c.getReflexes()), 2) + 							"| Coordination:\t" 								+ StringUtil.pad(String.valueOf(c.getCoordination()), 2) + 						"| Physique:\t\t" 									+ StringUtil.pad(String.valueOf(c.getPhysique()), 2) + 						"|\n"
+						 + "|Acrobatics: "				+ c.getAcrobatics() + "\t\t" 	+ StringUtil.pad(String.valueOf(c.getReflexes()+c.getAcrobatics()), 2) + 		"| Catch: " 		+ c.getCatching() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getCoordination()+c.getCatching()), 2) + 		"| Athletics: " 	+ c.getAcrobatics() + "\t" 		+ StringUtil.pad(String.valueOf(c.getPhysique()+c.getAthletics()), 2) + 	"|\n"
+						 + "|Dodge: "					+ c.getDodge() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getReflexes()+c.getDodge()), 2) + 			"| Climb: " 		+ c.getClimb() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getCoordination()+c.getClimb()), 2) + 		"| Leap: " 			+ c.getLeap() + "\t\t" 			+ StringUtil.pad(String.valueOf(c.getPhysique()+c.getLeap()), 2) + 			"|\n"
+						 + "|Hand-to-Hand: "			+ c.getHandToHand() + "\t" 		+ StringUtil.pad(String.valueOf(c.getReflexes()+c.getHandToHand()), 2) + 		"| Drive: " 		+ c.getDrive() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getCoordination()+c.getDrive()), 2) + 		"| Lifting: " 		+ c.getLifting() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getPhysique()+c.getLifting()), 2) + 		"|\n"
+						 + "|Melee Weapons: " 			+ c.getMeleeWeapons() + "\t" 	+ StringUtil.pad(String.valueOf(c.getReflexes()+c.getMeleeWeapons()), 2) + 		"| Marksmanship: " 	+ c.getMarksmanship() + "\t" 	+ StringUtil.pad(String.valueOf(c.getCoordination()+c.getMarksmanship()), 2) + 	"| Resistance: " 	+ c.getResistance() + "\t" 		+ StringUtil.pad(String.valueOf(c.getPhysique()+c.getResistance()), 2) + 	"|\n"
+						 + "|Stealth: " 				+ c.getStealth() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getReflexes()+c.getStealth()), 2) + 			"| Thievery: " 		+ c.getThievery() + "\t\t"	 	+ StringUtil.pad(String.valueOf(c.getCoordination()+c.getThievery()), 2) + 		"| Running: " 		+ c.getRunning() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getPhysique()+c.getRunning()), 2) + 		"|\n"
+						 + "|\t\t\t  | Thrown Weapons: " + c.getThrownWeapons() + "\t"	+ StringUtil.pad(String.valueOf(c.getCoordination()+c.getThrownWeapons()), 2) + "| Swimming: " 		+ c.getSwimming() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getPhysique()+c.getSwimming()), 2) + 			"|\n"
 						 + "---------------------------------------------------------------------------\n"
-						 + "|Knowledge:\t\t" + c.getKnowledge() + " | Perception:\t\t" + c.getPerception() + " | Presence:\t\t" + c.getPresence() + " |\n"
-						 + "|ArcaneLore: " + c.getArcaneLore() + "\t\t" + (c.getKnowledge()+c.getArcaneLore()) + " | Artist: " + c.getArtist() + "\t\t" + (c.getPerception()+c.getArtist()) + " | Bluff: " + c.getArcaneLore() + "\t\t" + (c.getPresence()+c.getBluff()) + " |\n"
-						 + "|Demolitions: " + c.getDemolitions() + "\t\t" + (c.getKnowledge()+c.getDemolitions()) + " | Engineering: " + c.getEngineering() + "\t" + (c.getPerception()+c.getEngineering()) + " | Charm: " + c.getCharm() + "\t\t" + (c.getPresence()+c.getCharm()) + " |\n"
-						 + "|Languages: " + c.getLanguages() + "\t\t" + (c.getKnowledge()+c.getLanguages()) + " | Search: " + c.getSearch() + "\t\t" + (c.getPerception()+c.getSearch()) + " | Intimidation: " + c.getIntimidation() + "\t" + (c.getPresence()+c.getIntimidation()) + " |\n"
-						 + "|Medicine: " + c.getMedicine() + "\t\t" + (c.getKnowledge()+c.getMedicine()) + " | Streetwise: " + c.getStreetwise() + "\t" + (c.getPerception()+c.getStreetwise()) + " | Persuasion: " + c.getPersuasion() + "\t" + (c.getPresence()+c.getPersuasion()) + " |\n"
-						 + "|Scholar: " + c.getScholar() + "\t\t" + (c.getKnowledge()+c.getScholar()) + " | Surveillance: " + c.getSurveillance() + "\t" + (c.getPerception()+c.getSurveillance()) + " | Willpower: " + c.getWillpower() + "\t" + (c.getPresence()+c.getWillpower()) + " |\n"
-						 + "|Science: " + c.getScience() + "\t\t" + (c.getKnowledge()+c.getScience()) + " | Survival: " + c.getSurvival() + "\t\t" + (c.getPerception()+c.getSurvival()) + " | \t\t\t  |\n"
-						 + "|Security: " + c.getSecurity() + "\t\t" + (c.getKnowledge()+c.getSecurity() + " | \t\t\t  |\t\t\t  |\n")
+						 + "|Knowledge:\t\t" 											+ StringUtil.pad(String.valueOf(c.getKnowledge()), 2) + 						"| Perception:\t\t" 								+ StringUtil.pad(String.valueOf(c.getPerception()), 2) + 						"| Presence:\t\t" 									+ StringUtil.pad(String.valueOf(c.getPresence()), 2) + 						"|\n"
+						 + "|Arcane Lore: " 			+ c.getArcaneLore() + "\t\t" 	+ StringUtil.pad(String.valueOf(c.getKnowledge()+c.getArcaneLore()), 2) + 		"| Artist: " 		+ c.getArtist() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getPerception()+c.getArtist()), 2) + 			"| Bluff: " 		+ c.getArcaneLore() + "\t\t" 	+ StringUtil.pad(String.valueOf(c.getPresence()+c.getBluff()), 2) + 		"|\n"
+						 + "|Demolitions: " 			+ c.getDemolitions() + "\t\t" 	+ StringUtil.pad(String.valueOf(c.getKnowledge()+c.getDemolitions()), 2) + 		"| Engineering: " 	+ c.getEngineering() + "\t" 	+ StringUtil.pad(String.valueOf(c.getPerception()+c.getEngineering()), 2) + 	"| Charm: " 		+ c.getCharm() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getPresence()+c.getCharm()), 2) + 		"|\n"
+						 + "|Languages: " 				+ c.getLanguages() + "\t\t" 	+ StringUtil.pad(String.valueOf(c.getKnowledge()+c.getLanguages()), 2) + 		"| Search: " 		+ c.getSearch() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getPerception()+c.getSearch()), 2) + 			"| Intimidation: " 	+ c.getIntimidation() + "\t" 	+ StringUtil.pad(String.valueOf(c.getPresence()+c.getIntimidation()), 2) + 	"|\n"
+						 + "|Medicine: " 				+ c.getMedicine() + "\t\t"	 	+ StringUtil.pad(String.valueOf(c.getKnowledge()+c.getMedicine()), 2) + 		"| Streetwise: " 	+ c.getStreetwise() + "\t" 		+ StringUtil.pad(String.valueOf(c.getPerception()+c.getStreetwise()), 2) + 		"| Persuasion: " 	+ c.getPersuasion() + "\t" 		+ StringUtil.pad(String.valueOf(c.getPresence()+c.getPersuasion()), 2) + 	"|\n"
+						 + "|Scholar: " 				+ c.getScholar() + "\t\t"	 	+ StringUtil.pad(String.valueOf(c.getKnowledge()+c.getScholar()), 2) + 			"| Surveillance: " 	+ c.getSurveillance() + "\t" 	+ StringUtil.pad(String.valueOf(c.getPerception()+c.getSurveillance()), 2) + 	"| Willpower: " 	+ c.getWillpower() + "\t" 		+ StringUtil.pad(String.valueOf(c.getPresence()+c.getWillpower()), 2) + 	"|\n"
+						 + "|Science: " 				+ c.getScience() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getKnowledge()+c.getScience()), 2) + 			"| Survival: " 		+ c.getSurvival() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getPerception()+c.getSurvival()), 2) + 		"| \t\t\t  " + 																													"|\n"
+						 + "|Security: " 				+ c.getSecurity() + "\t\t" 		+ StringUtil.pad(String.valueOf(c.getKnowledge()+c.getSecurity()), 2) + 		"| \t\t\t" +  																														"  |\t\t\t" + 																													"  |\n"
 						 + "===========================================================================\n"
 
 				);
