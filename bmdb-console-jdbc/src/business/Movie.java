@@ -6,25 +6,25 @@ public class Movie
 	String title;
 	String year;
 	String rating;
-	String genre;
+	String director;
 	
 	public Movie()
 	{
 		
 	}
 	
-	public Movie(int id, String title, String year,	String rating, String genre)
+	public Movie(int id, String title, String year,	String rating, String director)
 	{
 		this.id = id;
 		this.title = title;
 		this.year = year;
 		this.rating = rating;
-		this.genre = genre;
+		this.director = director;
 	}
 	
 	public String displaySummary()
 	{
-		return title + " (" + rating + ") was released in " + year + ". Genre(s): " + genre;
+		return title + " (" + rating + ") was released in " + year + ". Director(s): " + director;
 	}
 	
 	public String getTitle() 
@@ -51,13 +51,13 @@ public class Movie
 	{
 		this.rating = rating;
 	}
-	public String getGenre() 
+	public String getDirector() 
 	{
-		return genre;
+		return director;
 	}
-	public void setGenre(String genre) 
+	public void setDirector(String director) 
 	{
-		this.genre = genre;
+		this.director = director;
 	}
 	
 	public int getId() {

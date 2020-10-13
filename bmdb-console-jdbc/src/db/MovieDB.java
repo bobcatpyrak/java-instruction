@@ -1,13 +1,12 @@
 package db;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import business.Actor;
+import business.Movie;
 
-public class ActorDB implements DAO<Actor> 
+public class MovieDB implements DAO<Movie> 
 {
 
 	// pg. 677
@@ -22,17 +21,17 @@ public class ActorDB implements DAO<Actor>
 	
 	
 	@Override
-	public Actor get(int id) 
+	public Movie get(int id) 
 	{
-		Actor a = null;
-		String sql = "select * from actor where id = ?";
+		Movie a = null;
+		String sql = "select * from movie where id = ?";
 		try (Connection conn = getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql))
 		{
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next())
-				a = getActorFromResultSet(rs);
+				a = getMovieFromResultSet(rs);
 		}
 		catch (SQLException e)
 		{
@@ -43,12 +42,12 @@ public class ActorDB implements DAO<Actor>
 	}
 
 	@Override
-	public List<Actor> getAll() 
+	public List<Movie> getAll() 
 	{
-		List<Actor> actors = new ArrayList<Actor>();
+		List<Movie> movies = new ArrayList<Movie>();
 		// pg. 679
 			
-		String sql = "select * from actor;";
+		String sql = "select * from movie;";
 
 		try (Connection conn = getConnection();
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -59,38 +58,38 @@ public class ActorDB implements DAO<Actor>
 			// pg. 681
 			while (rs.next())
 			{
-				Actor a = getActorFromResultSet(rs);
-				actors.add(a);
+				Movie a = getMovieFromResultSet(rs);
+				movies.add(a);
 			}
 		} 
 		catch (SQLException e) 
 		{
-			System.out.println("Error getting all actors!");
+			System.out.println("Error getting all movies!");
 			e.printStackTrace();
-			actors = null;
+			movies = null;
 		}
 		
-		return actors;
+		return movies;
 	}
 
 	@Override
-	public boolean add(Actor a) 
+	public boolean add(Movie a) 
 	{
 		boolean success = false;
-		String sql = "insert into actor (FirstName, LastName, Gender, BirthDate) values (?, ?, ?, ?)";
+		String sql = "insert into movie (title, year, rating, director) values (?, ?, ?, ?)";
 		try (Connection conn = getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql))
 		{
-			ps.setString(1, a.getFirstName());
-			ps.setString(2, a.getLastName());
-			ps.setString(3, a.getGender());
-			ps.setString(4, a.getBirthdate().toString());
+			ps.setString(1, a.getTitle());
+			ps.setString(2, a.getYear());
+			ps.setString(3, a.getRating());
+			ps.setString(4, a.getDirector());
 			ps.executeUpdate();
 			success = true;
 		}
 		catch (SQLException e)
 		{
-			System.out.println("Error adding Actor");
+			System.out.println("Error adding Movie");
 			e.printStackTrace();
 		}
 		
@@ -98,22 +97,22 @@ public class ActorDB implements DAO<Actor>
 	}
 
 	@Override
-	public boolean update(Actor a) 
+	public boolean update(Movie a) 
 	{
 		boolean success = false;
-		String sql = "update actor set" + 
-					 " firstName = ?," + 
-					 " lastName = ?," + 
-					 " gender = ?," + 
-					 " birthdate = ?" + 
+		String sql = "update movie set" + 
+					 " title = ?," + 
+					 " year = ?," + 
+					 " rating = ?," + 
+					 " director = ?" + 
 					 " where id = ?";
 		try (Connection conn = getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql))
 		{
-			ps.setString(1, a.getFirstName());
-			ps.setString(2, a.getLastName());
-			ps.setString(3, a.getGender());
-			ps.setString(4, a.getBirthdate().toString());
+			ps.setString(1, a.getTitle());
+			ps.setString(2, a.getYear());
+			ps.setString(3, a.getRating());
+			ps.setString(4, a.getDirector());
 			ps.setInt(5, a.getId());
 
 			ps.executeUpdate();
@@ -121,7 +120,7 @@ public class ActorDB implements DAO<Actor>
 		}
 		catch (SQLException e)
 		{
-			System.out.println("Error updating Actor");
+			System.out.println("Error updating Movie");
 			e.printStackTrace();
 		}
 		
@@ -129,10 +128,10 @@ public class ActorDB implements DAO<Actor>
 	};
 
 	@Override
-	public boolean delete(Actor a) 
+	public boolean delete(Movie a) 
 	{
 		boolean success = false;
-		String sql = "delete from actor where id = ?";
+		String sql = "delete from movie where id = ?";
 		try (Connection conn = getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql))
 		{
@@ -142,22 +141,21 @@ public class ActorDB implements DAO<Actor>
 		}
 		catch (SQLException e)
 		{
-			System.out.println("Error deleting Actor");
+			System.out.println("Error deleting Movie");
 			e.printStackTrace();
 		}
 		
 		return success;
 	}
 	
-	private Actor getActorFromResultSet(ResultSet rs) throws SQLException
+	private Movie getMovieFromResultSet(ResultSet rs) throws SQLException
 	{
 		int id = rs.getInt(1);
-		String fn = rs.getString(2);
-		String ln = rs.getString(3);
-		String gender = rs.getString(4);
-		String birthdate = rs.getString(5);
-		LocalDate bd = LocalDate.parse(birthdate);
-		Actor a = new Actor(id, fn, ln, gender, bd);
+		String t = rs.getString(2);
+		String y = rs.getString(3);
+		String r = rs.getString(4);
+		String d = rs.getString(5);
+		Movie a = new Movie(id, t, y, r, d);
 		return a;
 	}
 
