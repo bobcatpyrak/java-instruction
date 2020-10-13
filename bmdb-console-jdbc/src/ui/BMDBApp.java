@@ -36,6 +36,7 @@ public class BMDBApp
 			System.out.println("1 - Add Actor");
 			System.out.println("2 - List Actors");
 			System.out.println("3 - Find Actor");
+			System.out.println("3L - Find Actor by last name");
 			System.out.println("4 - Edit Actor");	
 			System.out.println("5 - Remove Actor");
 			System.out.println("6 - Add Movie");
@@ -80,6 +81,20 @@ public class BMDBApp
 							System.out.println(actorDAO.get(findId).displaySummary());
 						else
 							System.out.println("Actor not found.");
+					}
+					else
+						System.out.println("There have been no actors added yet.");
+					break;
+				case "3L":
+					if (actors.size() > 0)
+					{
+						String lastName = Console.getRequiredString("Enter last name of actor: ");
+						List<Actor> actorsByLast = ((ActorDB) actorDAO).getByLastName(lastName);
+						
+						for (Actor j : actorsByLast)
+						{
+							System.out.println(j.displaySummary());
+						}
 					}
 					else
 						System.out.println("There have been no actors added yet.");

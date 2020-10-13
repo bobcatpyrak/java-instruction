@@ -41,6 +41,31 @@ public class ActorDB implements DAO<Actor>
 		
 		return a;
 	}
+	
+	public List<Actor> getByLastName(String lastName)
+	{
+		List<Actor> actorsByLast = new ArrayList<Actor>();
+		
+		String sql = "select * from actor where lastName = '" + lastName + "'";
+		
+		try (Connection conn = getConnection(); 
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery())
+		{
+			while (rs.next())
+			{
+				Actor a = getActorFromResultSet(rs);
+				actorsByLast.add(a);
+			}
+		}
+		catch (SQLException e)
+		{
+			System.out.println("Error getting all actors!");
+			e.printStackTrace();
+			actorsByLast = null;
+		}
+		return actorsByLast;
+	}
 
 	@Override
 	public List<Actor> getAll() 
