@@ -33,6 +33,11 @@ public class StreamProcessingApp {
 										.collect(Collectors.toList());
 		contactNames.stream()
 						.forEach(System.out::println);
+		String csv = contacts.stream()
+						.map(c -> c.getName())
+						.reduce("", (a, b) -> a + b + ", ");
+		csv = csv.substring(0, csv.length() - 2);
+		System.out.println(csv);
 	}
 
 }

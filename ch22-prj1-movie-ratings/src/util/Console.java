@@ -1,4 +1,4 @@
-package ui.console;
+package util;
 import java.util.Scanner;
 
 public class Console {
@@ -27,7 +27,7 @@ public class Console {
         return s;
     }
 
-    public static String getChoiceString(String prompt, String ...sa) {
+    public static String getChoiceString(String prompt, String[] sa) {
         String s = "";
         boolean isValid = false;
         while (!isValid) {
@@ -150,8 +150,16 @@ public static String getRequiredString(String prompt) {
         return d;
     }
     
+    public static void println()
+    {
+    	System.out.println();
+    }
     public static void println(String s)
     {
     	System.out.println(s);
+    }
+    public static void print(String s)
+    {
+    	System.out.print(s);
     }
 }
